@@ -2,7 +2,7 @@
 
 A base template for full-stack HighLevel Marketplace apps
 
-[![Sponsor cbnsndwch](https://img.shields.io/badge/Sponsor-%E2%9D%A4-red?logo=github)](https://github.com/sponsors/cbnsndwch)
+[![Sponsor cbnsndwch](https://img.shields.io/badge/Sponsor-%E2%9D%A4-red?style=for-the-badge&logo=github)](https://github.com/sponsors/cbnsndwch) [![Buy Me A Cafecito ☕](https://img.shields.io/badge/Buy_Me_A_Coffee-☕-FFDD00?style=for-the-badge&logoColor=black)](https://www.buymeacoffee.com/cbnsndwch)
 
 ## Table of Contents
 
