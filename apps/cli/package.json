@@ -36,7 +36,6 @@
         "citty": "catalog:",
         "consola": "catalog:",
         "defu": "catalog:",
-        "ofetch": "catalog:",
         "picocolors": "catalog:"
     },
     "devDependencies": {
@@ -45,7 +44,10 @@
         "tsup": "catalog:",
         "typescript": "catalog:",
         "vitest": "catalog:",
-        "vite": "catalog:"
+        "vite": "catalog:",
+        "oxc": "catalog:",
+        "oxfmt": "catalog:",
+        "oxlint": "catalog:"
     },
     "files": [
         "dist",

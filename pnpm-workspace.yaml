@@ -46,7 +46,6 @@ catalog:
   mongodb: ^7.1.1
   mongoose: ^8.19.2
   npm-check-updates: ^19.6.6
-  ofetch: ^1.5.1
   oxc: ^1.0.1
   oxfmt: ^0.42.0
   oxlint: ^1.57.0
