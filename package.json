@@ -44,7 +44,7 @@
         "npm-check-updates": "^19.1.2",
         "prettier": "^3.6.2",
         "turbo": "^2.5.8",
-        "typescript-eslint": "^8.46.2"
+        "typescript-eslint": "^8.58.0"
     },
     "packageManager": "pnpm@10.20.0"
 }
