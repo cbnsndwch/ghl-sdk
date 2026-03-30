@@ -35,13 +35,23 @@ const main = defineCommand({
 });
 
 // ─── Track command invocations and crashes ───
-const commandName = process.argv[2] ?? 'help';
-trackEvent('command:invoked', { command: commandName });
+const args = process.argv.slice(2).filter((arg) => !arg.startsWith('-'));
+const commandName = args[0] ?? 'help';
+const subCommandName = args[1];
+const fullCommand = args.join(' ') || 'help';
+
+trackEvent('command:invoked', {
+    command: fullCommand,
+    baseCommand: commandName,
+    subcommand: subCommandName
+});
 
 runMain(main).catch(async (err: unknown) => {
     captureException(err);
     trackEvent('command:error', {
-        command: commandName,
+        command: fullCommand,
+        baseCommand: commandName,
+        subcommand: subCommandName,
         error: err instanceof Error ? err.message : String(err)
     });
     await flushSentry();

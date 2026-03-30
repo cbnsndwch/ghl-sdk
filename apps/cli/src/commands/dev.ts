@@ -1,12 +1,12 @@
+import * as p from '@clack/prompts';
 import { defineCommand } from 'citty';
 import pc from 'picocolors';
-import * as p from '@clack/prompts';
 
-import { tryLoadConfig, type GhlConfig } from '../config.js';
+import { tryLoadConfig, } from '../config.js';
+import { trackEvent } from '../telemetry/index.js';
+import { kvLine } from '../utils/formatting.js';
 import { startDevServer } from '../utils/process.js';
 import { startTunnel, type TunnelProvider } from '../utils/tunnel.js';
-import { kvLine } from '../utils/formatting.js';
-import { trackEvent } from '../telemetry/index.js';
 
 export const devCommand = defineCommand({
     meta: {
