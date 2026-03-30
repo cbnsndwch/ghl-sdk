@@ -6,8 +6,11 @@
 '@cbnsndwch/ghl-sdk-storage-memory': patch
 '@cbnsndwch/ghl-sdk-storage-mongodb': patch
 '@cbnsndwch/ghl-sdk-webhooks': patch
+'@cbnsndwch/ghl-cli': patch
 ---
 
 Standardize package build tooling across the SDK workspace.
 
 This switches package scripts to tsup, oxfmt, and oxlint, moves shared dependency versions into the pnpm catalog, and aligns package build configuration for release and local development.
+
+Add CLI.
