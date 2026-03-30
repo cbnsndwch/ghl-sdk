@@ -26,8 +26,8 @@ catalog:
   "@swc/cli": ^0.8.0
   "@swc/core": ^1.15.21
   "@types/crypto-js": ^4
-  "@types/express": ^5.0.5
-  "@types/lodash": ^4.17.20
+  "@types/express": ^5.0.6
+  "@types/lodash": ^4.17.24
   "@types/node": ^22
   "@vitest/coverage-v8": ^4.1.2
   axios: ^1.13.1

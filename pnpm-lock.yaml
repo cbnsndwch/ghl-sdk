@@ -52,11 +52,11 @@ catalogs:
       specifier: ^4
       version: 4.2.2
     '@types/express':
-      specifier: ^5.0.5
+      specifier: ^5.0.6
       version: 5.0.6
     '@types/lodash':
-      specifier: ^4.17.20
-      version: 4.17.20
+      specifier: ^4.17.24
+      version: 4.17.24
     '@types/node':
       specifier: ^22
       version: 22.19.15
@@ -339,7 +339,7 @@ importers:
         version: 5.0.6
       '@types/lodash':
         specifier: 'catalog:'
-        version: 4.17.20
+        version: 4.17.24
       '@types/node':
         specifier: 'catalog:'
         version: 22.19.15
@@ -2367,8 +2367,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/lodash@4.17.20':
-    resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
+  '@types/lodash@4.17.24':
+    resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
 
   '@types/mysql@2.15.27':
     resolution: {integrity: sha512-YfWiV16IY0OeBfBCk8+hXKmdTKrKlwKN1MNKAPBu5JYxLwBEZl7QzeEpGnlZb3VMGJrrGmB84gXiH+ofs/TezA==}
@@ -6484,7 +6484,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/lodash@4.17.20': {}
+  '@types/lodash@4.17.24': {}
 
   '@types/mysql@2.15.27':
     dependencies:
