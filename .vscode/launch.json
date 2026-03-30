@@ -6,8 +6,13 @@
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "pnpm",
-            "runtimeArgs": ["dev"],
-            "skipFiles": ["<node_internals>/**", "**/node_modules/@nestjs/**"],
+            "runtimeArgs": [
+                "dev"
+            ],
+            "skipFiles": [
+                "<node_internals>/**",
+                "**/node_modules/@nestjs/**"
+            ],
             "env": {
                 "LOG_LEVEL": "VERBOSE"
             },
@@ -15,13 +20,37 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Debug CLI",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "tsx",
+                "${workspaceFolder}/apps/cli/src/index.ts",
+                "logs"
+                // "--help"
+            ],
+            "env": {
+                "CONSOLA_LEVEL": "5"
+            },
+            "cwd": "${workspaceFolder}/apps/cli",
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
             "name": "Start Web",
             "type": "node",
             "request": "launch",
-            "skipFiles": ["<node_internals>/**"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
             "runtimeExecutable": "pnpm",
             "cwd": "${workspaceRoot}/apps/web",
-            "runtimeArgs": ["start"]
+            "runtimeArgs": [
+                "start"
+            ]
         },
         {
             "name": "Debug Current File (ROOT)",
