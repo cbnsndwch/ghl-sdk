@@ -13,16 +13,16 @@ packages:
 catalog:
   "@changesets/cli": ^2.30.0
   "@clack/prompts": ^1.1.0
-  "@nestjs/cli": ^11.0.10
-  "@nestjs/common": ^11.1.8
-  "@nestjs/config": ^4.0.2
-  "@nestjs/core": ^11.1.8
-  "@nestjs/mongoose": ^11.0.3
-  "@nestjs/platform-express": ^11.1.8
+  "@nestjs/cli": ^11.0.16
+  "@nestjs/common": ^11.1.17
+  "@nestjs/config": ^4.0.3
+  "@nestjs/core": ^11.1.17
+  "@nestjs/mongoose": ^11.0.4
+  "@nestjs/platform-express": ^11.1.17
   "@nestjs/schematics": ^11.0.9
   "@nestjs/serve-static": ^5.0.4
-  "@nestjs/swagger": ^11.2.1
-  "@nestjs/testing": ^11.1.8
+  "@nestjs/swagger": ^11.2.6
+  "@nestjs/testing": ^11.1.17
   "@swc/cli": ^0.8.0
   "@swc/core": ^1.15.21
   "@types/crypto-js": ^4
