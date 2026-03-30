@@ -1,0 +1,25 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": [
+        "typescript",
+        "import"
+    ],
+    "categories": {},
+    "rules": {
+        "no-unused-vars": "warn",
+        "no-console": "warn",
+        "typescript/no-explicit-any": "off",
+        "import/no-duplicates": "warn"
+    },
+    "settings": {},
+    "env": {
+        "builtin": true
+    },
+    "globals": {},
+    "ignorePatterns": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.turbo/**"
+    ]
+}

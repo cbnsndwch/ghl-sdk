@@ -1,30 +1,23 @@
 /**
- * @typedef {import('npm-check-updates').RunOptions} RunOptions
- */
-
-/**
- * Options for `npm-check-updates`. See {@link https://www.npmjs.com/package/npm-check-updates#options}
- * for a full list of available options.
- *
- * @type {RunOptions}
+ * @type {import('npm-check-updates').RunOptions}
  */
 module.exports = {
-    /**
-     * The package manager you use. Can be `npm`, `yarn`, or `pnpm`.
-     */
+    reject: [
+        // we'll upgrade Node manually when it's time
+        '@types/node',
+
+        // it takes time for the ecosystem to catch up
+        "typescript",
+
+        // many icons removed
+        "lucide-react",
+
+        // Turbo ships codemods to upgrade, so leave it alone
+        "turbo"
+    ],
+
     packageManager: 'pnpm',
 
-    /**
-     * Whether to run `npm-check-updates` in all workspace directories.
-     */
-    deep: true,
-
-    /**
-     * Put the names of packages you don't want NCU to suggest updates for here.
-     */
-    reject: [
-        'conventional-changelog-cli',
-        '@types/node'
-        //
-    ]
+    // use workspaces mode
+    workspaces: true
 };

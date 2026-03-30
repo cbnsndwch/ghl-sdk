@@ -33,11 +33,10 @@
     "scripts": {
         "clean": "rimraf dist",
         "prebuild": "pnpm clean",
-        "build": "tsc",
-        "watch": "tsc -w",
-        "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "eslint \"src/**/*\"",
-        "lint:fix": "eslint \"src/**/*\" --fix"
+        "build": "tsup",
+        "format": "oxfmt --write src",
+        "lint": "oxlint ./src",
+        "lint:fix": "oxlint ./src --fix"
     },
     "dependencies": {
         "@cbnsndwch/ghl-sdk-core": "workspace:*",
@@ -46,9 +45,10 @@
         "@cbnsndwch/ghl-sdk-webhooks": "workspace:*"
     },
     "devDependencies": {
-        "@types/node": "^20.0.0",
-        "rimraf": "^6.0.1",
-        "typescript": "^5.9.3"
+        "@types/node": "catalog:",
+        "rimraf": "catalog:",
+        "tsup": "catalog:",
+        "typescript": "catalog:"
     },
     "engines": {
         "node": ">=22"
@@ -57,5 +57,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "packageManager": "pnpm@10.20.0"
+    "packageManager": "pnpm@10.33.0"
 }

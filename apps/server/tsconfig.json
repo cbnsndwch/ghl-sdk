@@ -1,11 +1,31 @@
 {
-    "extends": "../../tsconfig.base.json",
+    "files": [],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        },
+        {
+            "path": "./tsconfig.vite.json"
+        }
+    ],
     "compilerOptions": {
-        "typeRoots": [
-            "types"
-        ]
-    },
-    "include": [
-        "src"
-    ]
+        "checkJs": true,
+        "verbatimModuleSyntax": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "types": [
+            "vitest",
+            "./types"
+        ],
+        "paths": {
+            "@/*": [
+                "./app/*"
+            ],
+            "src/*": [
+                "./src/*"
+            ]
+        }
+    }
 }

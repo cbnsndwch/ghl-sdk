@@ -70,7 +70,7 @@ export type ValidConfig =
   | { clientId: string; clientSecret: string; privateIntegrationToken?: undefined; agencyAccessToken?: string; locationAccessToken?: string; apiVersion?: string; tokenProvider?: TokenProvider; logLevel?: LogLevelType; };
 ```
 
-2. **libs/sdk-core/src/errors.ts**
+1. **libs/sdk-core/src/errors.ts**
 
 ```typescript
 export class GHLError extends Error {
@@ -164,9 +164,9 @@ export class HighLevel {
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix"
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix"
   },
   "dependencies": {
     "axios": "^1.13.1"
@@ -252,6 +252,7 @@ const contacts = await ghl.contacts.searchContactsAdvanced({
 ## Documentation
 
 See the [main documentation](../../docs/SDK_MIGRATION_PLAN.md) for details.
+
 ```
 
 #### Step 1.5: Create Index Exports
@@ -291,6 +292,7 @@ pnpm build
 ```
 
 Verify:
+
 - `lib/` directory created
 - `.d.ts` files generated
 - No compilation errors
@@ -381,9 +383,9 @@ export { BaseSessionStorage } from './base-storage';
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix"
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -507,9 +509,9 @@ mkdir -p libs/sdk-webhooks/src/{adapters}
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix"
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix"
   },
   "dependencies": {
     "@cbnsndwch/ghl-sdk-core": "workspace:*",
@@ -595,9 +597,9 @@ export { HighLevel as default } from '@cbnsndwch/ghl-sdk-core';
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix"
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix"
   },
   "dependencies": {
     "@cbnsndwch/ghl-sdk-core": "workspace:*",

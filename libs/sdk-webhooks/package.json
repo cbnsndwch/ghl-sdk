@@ -21,24 +21,24 @@
     "scripts": {
         "clean": "rimraf dist",
         "prebuild": "pnpm clean",
-        "build": "tsc",
-        "watch": "tsc -w",
-        "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "eslint \"src/**/*\"",
-        "lint:fix": "eslint \"src/**/*\" --fix"
+        "build": "tsup",
+        "format": "oxfmt --write src",
+        "lint": "oxlint ./src",
+        "lint:fix": "oxlint ./src --fix"
     },
     "dependencies": {
         "@cbnsndwch/ghl-sdk-storage": "workspace:*"
     },
     "devDependencies": {
-        "@types/express": "^5.0.5",
-        "@types/node": "^20.0.0",
-        "express": "^5.1.0",
-        "rimraf": "^6.0.1",
-        "typescript": "^5.9.3"
+        "@types/express": "catalog:",
+        "@types/node": "catalog:",
+        "express": "catalog:",
+        "rimraf": "catalog:",
+        "tsup": "catalog:",
+        "typescript": "catalog:"
     },
     "peerDependencies": {
-        "@cbnsndwch/ghl-sdk-storage": "^0.5.1"
+        "@cbnsndwch/ghl-sdk-storage": "workspace:*"
     },
     "peerDependenciesMeta": {
         "express": {
@@ -68,5 +68,5 @@
         "access": "public",
         "registry": "https://registry.npmjs.org/"
     },
-    "packageManager": "pnpm@10.20.0"
+    "packageManager": "pnpm@10.33.0"
 }

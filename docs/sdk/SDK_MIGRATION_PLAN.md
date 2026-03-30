@@ -12,6 +12,7 @@ This document outlines a comprehensive plan to migrate the monolithic `@cbnsndwc
 ## Architecture Overview
 
 ### Current Structure (Monolithic)
+
 ```
 libs/sdk/
   - Core API Client (35+ API resources)
@@ -23,6 +24,7 @@ libs/sdk/
 ```
 
 ### Target Structure (Modular)
+
 ```
 libs/
   sdk-core/           # Core API client (no external runtime deps)
@@ -42,6 +44,7 @@ libs/
 **Purpose**: Pure API client with zero runtime dependencies beyond HTTP client.
 
 **Key Features**:
+
 - ESM-first with CJS compatibility
 - Tree-shakeable API resources
 - Platform-agnostic (Node, Browser, Deno, Edge)
@@ -54,6 +57,7 @@ libs/
 **Location**: `libs/sdk-core/`
 
 **Files to Create**:
+
 ```
 libs/sdk-core/
 ├── package.json
@@ -148,9 +152,9 @@ libs/sdk-core/
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix",
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
     "prepublish": "pnpm build --force",
     "pub": "npm publish"
   },
@@ -398,9 +402,9 @@ libs/sdk-storage/
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix",
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
     "prepublish": "pnpm build --force",
     "pub": "npm publish"
   },
@@ -638,9 +642,9 @@ libs/sdk-storage-memory/
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix",
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
     "prepublish": "pnpm build --force",
     "pub": "npm publish"
   },
@@ -769,9 +773,9 @@ libs/sdk-storage-mongodb/
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix",
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
     "prepublish": "pnpm build --force",
     "pub": "npm publish"
   },
@@ -972,9 +976,9 @@ libs/sdk-webhooks/
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix",
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
     "prepublish": "pnpm build --force",
     "pub": "npm publish"
   },
@@ -1314,9 +1318,9 @@ libs/sdk-unified/
     "prebuild": "pnpm clean",
     "build": "tsc -b tsconfig.json",
     "watch": "tsc -b tsconfig.json -w",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*\"",
-    "lint:fix": "eslint \"src/**/*\" --fix",
+    "format": "oxfmt --write src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
     "prepublish": "pnpm build --force",
     "pub": "npm publish"
   },
@@ -1368,20 +1372,24 @@ export { HighLevel as default } from '@cbnsndwch/ghl-sdk-core';
 ### 6.1 Deprecation Timeline
 
 **Immediate (v0.x → v1.0)**:
+
 - Keep existing `@cbnsndwch/ghl-api-client` package
 - Mark as deprecated in README
 - Add migration guide
 
 **3 Months**:
+
 - Publish v1.0 of all new packages
 - Document migration examples
 - Provide codemods if feasible
 
 **6 Months**:
+
 - Stop active development on old package
 - Security updates only
 
 **12 Months**:
+
 - Archive old package completely
 
 ### 6.2 Migration Examples
@@ -1518,6 +1526,7 @@ tests/e2e/
 ### 8.1 Per-Package Documentation
 
 Each package needs:
+
 - `README.md` - Installation, usage, API docs
 - `CHANGELOG.md` - Version history
 - `examples/` - Usage examples
@@ -1531,6 +1540,7 @@ docs/MIGRATION_GUIDE.md
 ```
 
 Content:
+
 - Why migrate?
 - Breaking changes
 - Step-by-step migration
@@ -1661,6 +1671,7 @@ jobs:
 ## Success Criteria
 
 ### Functional Requirements
+
 - ✅ Core SDK works without storage dependencies
 - ✅ Storage adapters are pluggable
 - ✅ Webhooks work with multiple frameworks
@@ -1668,6 +1679,7 @@ jobs:
 - ✅ Tree-shaking reduces bundle size significantly
 
 ### Non-Functional Requirements
+
 - ✅ Zero breaking changes for meta-package users
 - ✅ ESM and CJS both supported
 - ✅ Works in Node, Browser, Deno, Edge runtimes
@@ -1675,6 +1687,7 @@ jobs:
 - ✅ 100% test coverage for new packages
 
 ### Performance Metrics
+
 - ✅ Bundle size reduced by 60-80% for API-only usage
 - ✅ Install time reduced by 40-60% without MongoDB
 - ✅ Tree-shaking eliminates unused API resources
@@ -1702,18 +1715,23 @@ jobs:
 ## Risk Mitigation
 
 ### Risk 1: Breaking Changes
+
 **Mitigation**: Maintain meta-package with identical API surface
 
 ### Risk 2: Complex Dependencies
+
 **Mitigation**: Use peerDependencies and clear documentation
 
 ### Risk 3: Storage Migration Issues
+
 **Mitigation**: Provide migration scripts and backwards-compatible adapters
 
 ### Risk 4: Framework Compatibility
+
 **Mitigation**: Create adapters for all major frameworks, document custom adapter creation
 
 ### Risk 5: Bundle Size Regression
+
 **Mitigation**: Add bundle size tests in CI, use bundle analyzer
 
 ---
