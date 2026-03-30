@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@cbnsndwch/ghl-sdk-storage": "workspace:*",
-        "mongodb": "^6.20.0"
+        "mongodb": "^6.21.0"
     },
     "devDependencies": {
         "@types/node": "^20.0.0",
