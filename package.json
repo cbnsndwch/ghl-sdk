@@ -41,7 +41,7 @@
         "eslint-plugin-prettier": "^5.5.4",
         "globals": "^16.4.0",
         "http-server": "^14.1.1",
-        "npm-check-updates": "^19.1.2",
+        "npm-check-updates": "^19.6.6",
         "prettier": "^3.6.2",
         "turbo": "^2.5.8",
         "typescript-eslint": "^8.46.2"
