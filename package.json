@@ -1,7 +1,7 @@
 {
     "name": "@cbnsndwch/ghl-app-template",
     "description": "A base template for full stack HighLevel Marketplace apps",
-    "version": "0.3.6",
+    "version": "0.5.1",
     "license": "MIT",
     "private": true,
     "repository": "https://github.com/cbnsndwch/ghl-app",

@@ -1,0 +1,63 @@
+{
+    "name": "@cbnsndwch/ghl-cli",
+    "description": "GHL Marketplace Developer CLI — scaffolding, local dev, webhook testing, and log streaming",
+    "version": "0.5.1",
+    "type": "module",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "author": {
+        "name": "cbnsndwch LLC",
+        "url": "https://github.com/cbnsndwch"
+    },
+    "bin": {
+        "ghl": "./dist/index.js"
+    },
+    "scripts": {
+        "build": "tsup",
+        "clean": "rm -rf dist",
+        "dev": "tsup --watch",
+        "format": "oxfmt --write src",
+        "lint": "oxlint ./src",
+        "lint:fix": "oxlint ./src --fix",
+        "test": "vitest --run --passWithNoTests",
+        "test:watch": "vitest"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "dependencies": {
+        "@cbnsndwch/ghl-sdk": "workspace:*",
+        "@cbnsndwch/ghl-sdk-core": "workspace:*",
+        "@cbnsndwch/ghl-sdk-webhooks": "workspace:*",
+        "@clack/prompts": "catalog:",
+        "citty": "catalog:",
+        "consola": "catalog:",
+        "defu": "catalog:",
+        "ofetch": "catalog:",
+        "picocolors": "catalog:"
+    },
+    "devDependencies": {
+        "@types/node": "catalog:",
+        "@vitest/coverage-v8": "catalog:",
+        "tsup": "catalog:",
+        "typescript": "catalog:",
+        "vitest": "catalog:",
+        "vite": "catalog:"
+    },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "main": "./dist/index.js"
+}

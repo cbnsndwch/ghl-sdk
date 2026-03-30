@@ -1,7 +1,7 @@
 {
     "name": "@cbnsndwch/ghl-app-api",
     "description": "A demo NestJS app showcasing the new GHL Marketplace SSO feature",
-    "version": "0.3.6",
+    "version": "0.5.1",
     "license": "MIT",
     "private": true,
     "author": {
