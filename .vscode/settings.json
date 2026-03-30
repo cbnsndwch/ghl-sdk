@@ -1,40 +1,52 @@
 {
-    "eslint.workingDirectories": [
-        "apps/server",
-        "apps/web",
-        "libs/contracts"
+    "cSpell.words": [
+        "axios",
+        "cbnsndwch",
+        "citty",
+        "consola",
+        "defu",
+        "ghl",
+        "highlevel",
+        "ofetch",
+        "oxfmt",
+        "oxlint",
+        "picocolors",
+        "rimraf",
+        "tsup",
+        "unrs",
+        "vitest",
+        "vset",
+        "vtag"
     ],
-    "eslint.lintTask.options": "-c .eslintrc.vscode.js",
-    "files.eol": "\n",
-    "files.associations": {
-        "*.css": "tailwindcss",
-        ".env": "dotenv"
-    },
-    "svg.preview.background": "transparent",
     "debug.inlineValues": "on",
-    "vite.autoStart": false,
-    "vite.buildCommand": "pnpm build",
-    "vite.showTerminal": true,
-    "vite.port": 5173,
-    "explorer.fileNesting.enabled": true,
-    "explorer.fileNesting.patterns": {
-        "*.ts": "${capture}.js,${capture}.spec.ts,${capture}.spec-d.ts,${capture}.spec.tsx,${capture}.spec-d.tsx,${capture}.options.ts,${capture}.test.ts,${capture}.test-d.ts,${capture}.test.tsx,${capture}.test-d.tsx,${capture}.stories.ts,${capture}.stories.tsx,${capture}.mdx",
-        "*.tsx": "${capture}.jsx,${capture}.spec.tsx,${capture}.spec-d.tsx,${capture}.test.tsx,${capture}.test-d.tsx,${capture}.stories.tsx,${capture}.stories.ts,${capture}.mdx",
-        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts, ${capture}.http",
-        "*.json": "${capture}.js,${capture}.ts",
-        ".env": ".env.*",
-        ".eslintrc.json": ".eslintrc.*.json,.eslintignore",
-        ".eslintrc.js": ".eslintrc.*.js,.eslintignore",
-        ".eslintrc.cjs": ".eslintrc.*.cjs,.eslintignore",
-        ".gitignore": ".gitkeep,.gitattributes",
-        ".prettierrc.json": ".prettierrc.*.json,.prettierignore",
-        ".prettierrc": ".prettierignore",
-        "package.json": "package-lock.json,pnpm-lock.yaml",
-        "tsconfig.json": "tsconfig.*.json,tsconfig.tsbuildinfo",
-        "typedoc.config.js": "typedoc.*.jsonc, typedoc.*.json"
-    },
     "editor.rulers": [
         80
     ],
-    "markdown-preview-enhanced.plantumlServer": "https://kroki.io/plantuml/svg/",
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        ".env": ".env.*",
+        ".gitignore": ".gitkeep,.gitattributes",
+        ".oxlintrc.json": ".oxfmtrc.json",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts, ${capture}.http",
+        "*.json": "${capture}.js,${capture}.ts",
+        "*.ts": "${capture}.js,${capture}.spec.ts,${capture}.spec-d.ts,${capture}.spec.tsx,${capture}.spec-d.tsx,${capture}.options.ts,${capture}.test.ts,${capture}.test-d.ts,${capture}.test.tsx,${capture}.test-d.tsx,${capture}.stories.ts,${capture}.stories.tsx,${capture}.mdx",
+        "*.tsx": "${capture}.jsx,${capture}.spec.tsx,${capture}.spec-d.tsx,${capture}.test.tsx,${capture}.test-d.tsx,${capture}.stories.tsx,${capture}.stories.ts,${capture}.mdx",
+        "package.json": "package-lock.json,yarn.lock,pnpm-lock.yaml",
+        "tsconfig.json": "tsconfig.*.json,tsconfig.tsbuildinfo"
+    },
+    "files.associations": {
+        ".env": "dotenv",
+        ".env.*": "dotenv"
+    },
+    "files.eol": "\n",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.turbo/**": true,
+        "**/node_modules/*/**": true
+    },
+    "vite.autoStart": false,
+    "vite.buildCommand": "pnpm build",
+    "vite.port": 5173,
+    "vite.showTerminal": true
 }

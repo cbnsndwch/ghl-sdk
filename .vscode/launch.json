@@ -24,32 +24,36 @@
             "runtimeArgs": ["start"]
         },
         {
-            "name": "Web - Chrome Debug",
-            "request": "launch",
-            "type": "chrome",
-            "webRoot": "${workspaceRoot}/apps/web",
-            "url": "http://localhost:5173"
-        },
-        {
-            "name": "Web - Firefox Debug",
-            "request": "launch",
-            "type": "firefox",
-            "webRoot": "${workspaceRoot}/apps/web",
-            "url": "http://localhost:5173"
-        },
-        {
-            "name": "Web - Edge Debug",
-            "request": "launch",
-            "type": "msedge",
-            "url": "http://localhost:5173",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Debug Current File",
+            "name": "Debug Current File (ROOT)",
             "type": "node",
             "request": "launch",
-            "program": "${file}",
-            "skipFiles": ["<node_internals>/**"]
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "tsx",
+                "${file}"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "cwd": "'${workspaceFolder}'",
+        },
+        {
+            "name": "Debug Current File (CWD)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+                "tsx",
+                "${file}"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "cwd": "${fileDirname}",
         }
     ]
 }

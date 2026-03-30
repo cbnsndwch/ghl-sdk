@@ -123,7 +123,7 @@ libs/sdk-core/
 ```json
 {
   "name": "@cbnsndwch/ghl-sdk-core",
-  "version": "0.3.6",
+  "version": "0.5.1",
   "description": "Core API client for HighLevel Public APIs",
   "license": "MIT",
   "type": "module",
@@ -382,7 +382,7 @@ libs/sdk-storage/
 ```json
 {
   "name": "@cbnsndwch/ghl-sdk-storage",
-  "version": "0.3.6",
+  "version": "0.5.1",
   "description": "Storage abstractions for GHL SDK",
   "license": "MIT",
   "type": "module",
@@ -622,7 +622,7 @@ libs/sdk-storage-memory/
 ```json
 {
   "name": "@cbnsndwch/ghl-sdk-storage-memory",
-  "version": "0.3.6",
+  "version": "0.5.1",
   "description": "In-memory storage adapter for GHL SDK",
   "license": "MIT",
   "type": "module",
@@ -753,7 +753,7 @@ libs/sdk-storage-mongodb/
 ```json
 {
   "name": "@cbnsndwch/ghl-sdk-storage-mongodb",
-  "version": "0.3.6",
+  "version": "0.5.1",
   "description": "MongoDB storage adapter for GHL SDK",
   "license": "MIT",
   "type": "module",
@@ -941,7 +941,7 @@ libs/sdk-webhooks/
 ```json
 {
   "name": "@cbnsndwch/ghl-sdk-webhooks",
-  "version": "0.3.6",
+  "version": "0.5.1",
   "description": "Webhook utilities for GHL SDK",
   "license": "MIT",
   "type": "module",
@@ -1298,7 +1298,7 @@ libs/sdk-unified/
 ```json
 {
   "name": "@cbnsndwch/ghl-sdk",
-  "version": "0.3.6",
+  "version": "0.5.1",
   "description": "Unified SDK for HighLevel (meta-package)",
   "license": "MIT",
   "type": "module",

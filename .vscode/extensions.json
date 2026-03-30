@@ -1,16 +1,25 @@
 {
     "recommendations": [
-        "shd101wyy.markdown-preview-enhanced",
+        "aaron-bond.better-comments",
+        "antfu.vite",
+        "bierner.comment-tagged-templates",
+        "bradlc.vscode-tailwindcss",
         "codezombiech.gitignore",
-        "dbaeumer.vscode-eslint",
-        "eamodio.gitlens",
+        "DavidAnson.vscode-markdownlint",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
         "formulahendry.auto-close-tag",
         "formulahendry.auto-rename-tag",
         "jock.svg",
+        "mikestead.dotenv",
+        "oxc.oxc-vscode",
+        "ParthR2031.colorful-comments",
         "Serhioromano.vscode-gitflow",
-        "antfu.vite",
-        "bradlc.vscode-tailwindcss"
+        "Serhioromano.vscode-gitflow",
+        "shd101wyy.markdown-preview-enhanced",
+        "streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries",
+        "streetsidesoftware.code-spell-checker",
+        "wayou.vscode-todo-highlight",
+        "yoavbls.pretty-ts-errors"
     ]
 }
