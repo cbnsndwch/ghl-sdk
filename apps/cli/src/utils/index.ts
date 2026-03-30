@@ -14,3 +14,4 @@ export {
     type TunnelResult
 } from './tunnel.js';
 export { startDevServer, type DevServerInfo } from './process.js';
+export { getCliVersion } from './version.js';
