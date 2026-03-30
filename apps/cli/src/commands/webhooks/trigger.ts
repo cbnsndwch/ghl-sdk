@@ -11,6 +11,7 @@ import {
     colorDuration,
     prettyJson
 } from '../../utils/index.js';
+import { trackEvent } from '../../telemetry/index.js';
 
 export const triggerCommand = defineCommand({
     meta: {
@@ -88,5 +89,11 @@ export const triggerCommand = defineCommand({
             p.log.warn(`Response body: ${prettyJson(result.body, 10)}`);
             p.outro(pc.red('✖ Webhook delivery failed'));
         }
+
+        trackEvent('webhooks:trigger', {
+            eventType,
+            status: result.status,
+            duration: result.duration
+        });
     }
 });

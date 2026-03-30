@@ -33,7 +33,10 @@
         "@cbnsndwch/ghl-sdk-core": "workspace:*",
         "@cbnsndwch/ghl-sdk-webhooks": "workspace:*",
         "@clack/prompts": "catalog:",
+        "@sentry/node": "^10.46.0",
+        "ci-info": "^4.4.0",
         "citty": "catalog:",
+        "conf": "^15.1.0",
         "consola": "catalog:",
         "defu": "catalog:",
         "picocolors": "catalog:"
@@ -41,13 +44,14 @@
     "devDependencies": {
         "@types/node": "catalog:",
         "@vitest/coverage-v8": "catalog:",
-        "tsup": "catalog:",
-        "typescript": "catalog:",
-        "vitest": "catalog:",
-        "vite": "catalog:",
         "oxc": "catalog:",
         "oxfmt": "catalog:",
-        "oxlint": "catalog:"
+        "oxlint": "catalog:",
+        "tsup": "catalog:",
+        "tsx": "catalog:",
+        "typescript": "catalog:",
+        "vite": "catalog:",
+        "vitest": "catalog:"
     },
     "files": [
         "dist",

@@ -6,6 +6,7 @@ import { tryLoadConfig, type GhlConfig } from '../config.js';
 import { startDevServer } from '../utils/process.js';
 import { startTunnel, type TunnelProvider } from '../utils/tunnel.js';
 import { kvLine } from '../utils/formatting.js';
+import { trackEvent } from '../telemetry/index.js';
 
 export const devCommand = defineCommand({
     meta: {
@@ -98,6 +99,13 @@ export const devCommand = defineCommand({
                 `${pc.yellow('💡 Tip:')} Configure ${pc.cyan(tunnelUrl)} as your redirect URL\n   in the GHL Developer Portal for your sandbox app.`
             );
         }
+
+        trackEvent('dev:started', {
+            framework: server.framework,
+            port,
+            tunnel: skipTunnel ? 'none' : tunnelProvider,
+            tunnelSuccess: !!tunnelUrl
+        });
 
         // ─── Graceful shutdown ───
         const cleanup = () => {

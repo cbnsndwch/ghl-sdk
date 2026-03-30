@@ -11,6 +11,7 @@ import {
     TEMPLATE_CHOICES,
     type TemplateId
 } from '../templates/index.js';
+import { trackEvent } from '../telemetry/index.js';
 
 export const initCommand = defineCommand({
     meta: {
@@ -125,6 +126,13 @@ export const initCommand = defineCommand({
         }
 
         s.stop('Project scaffolded!');
+
+        trackEvent('init:completed', {
+            template: templateId,
+            includeWebhooks,
+            includeCiCd,
+            fileCount: files.size
+        });
 
         // ─── Print summary ───
 

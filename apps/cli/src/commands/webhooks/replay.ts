@@ -10,6 +10,7 @@ import {
     colorDuration,
     prettyJson
 } from '../../utils/index.js';
+import { trackEvent } from '../../telemetry/index.js';
 
 export const replayCommand = defineCommand({
     meta: {
@@ -107,6 +108,11 @@ export const replayCommand = defineCommand({
             } else {
                 p.outro(pc.red('✖ Webhook replay failed'));
             }
+
+            trackEvent('webhooks:replay', {
+                status: result.status,
+                duration: result.duration
+            });
         } catch (err) {
             s.stop('Failed');
             const message = err instanceof Error ? err.message : String(err);

@@ -11,6 +11,7 @@ import {
     colorDuration,
     prettyJson
 } from '../utils/index.js';
+import { trackEvent } from '../telemetry/index.js';
 
 interface WebhookLogEntry {
     id: string;
@@ -98,6 +99,11 @@ export const logsCommand = defineCommand({
             );
             process.exit(1);
         }
+
+        trackEvent('logs:started', {
+            hasEventFilter: !!eventFilter,
+            hasStatusFilter: !!statusFilter
+        });
 
         const baseURL =
             config?.apiBaseUrl ?? 'https://services.leadconnectorhq.com';
