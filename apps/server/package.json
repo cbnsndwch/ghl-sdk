@@ -30,7 +30,7 @@
         "@nestjs/mongoose": "^11.0.3",
         "@nestjs/platform-express": "^11.1.8",
         "@nestjs/serve-static": "^5.0.4",
-        "@nestjs/swagger": "^11.2.1",
+        "@nestjs/swagger": "^11.2.6",
         "axios": "^1.13.1",
         "crypto-js": "^4.2.0",
         "dotenv": "^17.2.3",
