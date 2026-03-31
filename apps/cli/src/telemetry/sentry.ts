@@ -60,7 +60,7 @@ export async function flushSentry(timeout = 2_000): Promise<void> {
     if (!SENTRY_DSN || !isTelemetryEnabled()) {
         return;
     }
-    
+
     await Sentry.flush(timeout);
 }
 
@@ -71,6 +71,6 @@ export function captureException(err: unknown): void {
     if (!SENTRY_DSN || !isTelemetryEnabled()) {
         return;
     }
-    
+
     Sentry.captureException(err);
 }

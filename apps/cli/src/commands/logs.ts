@@ -1,3 +1,4 @@
+// oxlint-disable no-console
 import { defineCommand } from 'citty';
 import pc from 'picocolors';
 import * as p from '@clack/prompts';

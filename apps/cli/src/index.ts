@@ -35,7 +35,7 @@ const main = defineCommand({
 });
 
 // ─── Track command invocations and crashes ───
-const args = process.argv.slice(2).filter((arg) => !arg.startsWith('-'));
+const args = process.argv.slice(2).filter(arg => !arg.startsWith('-'));
 const commandName = args[0] ?? 'help';
 const subCommandName = args[1];
 const fullCommand = args.join(' ') || 'help';

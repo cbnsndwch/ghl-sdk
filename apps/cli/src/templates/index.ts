@@ -36,7 +36,9 @@ const DEFAULT_TEMPLATES: TemplateChoice[] = [
  */
 export async function getAvailableTemplates(): Promise<TemplateChoice[]> {
     try {
-        const res = await fetch('https://raw.githubusercontent.com/cbnsndwch/ghl-sdk/main/templates-registry.json');
+        const res = await fetch(
+            'https://raw.githubusercontent.com/cbnsndwch/ghl-sdk/main/templates-registry.json'
+        );
         if (res.ok) {
             const registry = await res.json();
             if (Array.isArray(registry) && registry.length > 0) {

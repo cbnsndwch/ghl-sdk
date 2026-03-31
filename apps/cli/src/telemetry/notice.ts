@@ -1,3 +1,4 @@
+// oxlint-disable no-console
 import pc from 'picocolors';
 
 import {
