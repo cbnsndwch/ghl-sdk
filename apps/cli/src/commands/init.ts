@@ -136,13 +136,15 @@ export const initCommand = defineCommand({
 
         // ─── Print summary ───
 
+        const pm = selectedTemplate.packageManager || 'npm';
+
         p.outro(
             [
                 `${pc.green('✔')} Scaffolded ${pc.bold(appName)}`,
                 '',
                 `  ${pc.bold('Next steps:')}`,
                 `  ${pc.dim('$')} cd ${appName}`,
-                `  ${pc.dim('$')} npm install`,
+                `  ${pc.dim('$')} ${pm} install`,
                 `  ${pc.dim('$')} cp .env.example .env`,
                 `  ${pc.dim('$')} ghl dev`
             ].join('\n')
