@@ -40,19 +40,6 @@
             ]
         },
         {
-            "name": "Start Web",
-            "type": "node",
-            "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "runtimeExecutable": "pnpm",
-            "cwd": "${workspaceRoot}/apps/web",
-            "runtimeArgs": [
-                "start"
-            ]
-        },
-        {
             "name": "Debug Current File (ROOT)",
             "type": "node",
             "request": "launch",
