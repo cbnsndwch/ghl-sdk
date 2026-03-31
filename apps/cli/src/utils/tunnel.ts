@@ -1,4 +1,12 @@
-import { spawn, type ChildProcess } from 'node:child_process';
+import {
+    execSync,
+    spawn,
+    spawnSync,
+    type ChildProcess
+} from 'node:child_process';
+import { platform } from 'node:os';
+
+import * as p from '@clack/prompts';
 
 import consola from 'consola';
 
@@ -10,11 +18,64 @@ export interface TunnelResult {
     stop: () => void;
 }
 
+export async function ensureCloudflaredInstalled(
+    spinner?: ReturnType<typeof p.spinner>
+): Promise<boolean> {
+    const { error } = spawnSync('cloudflared', ['--version']);
+    if (!error) return true;
+
+    // missing
+    if (spinner)
+        spinner.stop(
+            'cloudflared is required for the tunnel but not installed.'
+        );
+    const install = await p.confirm({
+        message: 'Would you like to install it now?',
+        initialValue: true
+    });
+
+    if (!install || p.isCancel(install)) {
+        throw new Error('cloudflared not installed');
+    }
+
+    const s = p.spinner();
+    s.start('Installing cloudflared...');
+
+    try {
+        if (platform() === 'darwin') {
+            execSync('brew install cloudflare/cloudflare/cloudflared', {
+                stdio: 'pipe'
+            });
+        } else if (platform() === 'win32') {
+            execSync(
+                'winget install --id Cloudflare.cloudflared --accept-package-agreements --accept-source-agreements',
+                { stdio: 'pipe' }
+            );
+        } else {
+            s.stop('Manual installation required');
+            throw new Error(
+                'Please install cloudflared manually: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/'
+            );
+        }
+        s.stop('cloudflared installed successfully!');
+        if (spinner) spinner.start('Resuming tunnel connection...');
+        return true;
+    } catch (err: any) {
+        s.stop('Installation failed');
+        throw new Error(`Failed to install cloudflared: ${err.message}`);
+    }
+}
+
 /**
  * Start a Cloudflare Quick Tunnel (no account required).
  * Reads the tunnel URL from the cloudflared stderr output.
  */
-async function startCloudflareTunnel(port: number): Promise<TunnelResult> {
+async function startCloudflareTunnel(
+    port: number,
+    spinner?: ReturnType<typeof p.spinner>
+): Promise<TunnelResult> {
+    await ensureCloudflaredInstalled(spinner);
+
     const child = spawn(
         'cloudflared',
         ['tunnel', '--url', `http://localhost:${port}`],
@@ -154,10 +215,11 @@ async function startNgrokTunnel(port: number): Promise<TunnelResult> {
  */
 export async function startTunnel(
     port: number,
-    preferred: TunnelProvider = 'cloudflare'
+    preferred: TunnelProvider = 'cloudflare',
+    spinner?: ReturnType<typeof p.spinner>
 ): Promise<TunnelResult> {
     const providers: Record<TunnelProvider, () => Promise<TunnelResult>> = {
-        cloudflare: () => startCloudflareTunnel(port),
+        cloudflare: () => startCloudflareTunnel(port, spinner),
         ngrok: () => startNgrokTunnel(port)
     };
 

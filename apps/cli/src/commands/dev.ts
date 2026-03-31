@@ -2,7 +2,7 @@ import * as p from '@clack/prompts';
 import { defineCommand } from 'citty';
 import pc from 'picocolors';
 
-import { tryLoadConfig, } from '../config.js';
+import { tryLoadConfig } from '../config.js';
 import { trackEvent } from '../telemetry/index.js';
 import { kvLine } from '../utils/formatting.js';
 import { startDevServer } from '../utils/process.js';
@@ -58,7 +58,11 @@ export const devCommand = defineCommand({
             tunnelSpinner.start(`Establishing ${tunnelProvider} tunnel...`);
 
             try {
-                const tunnel = await startTunnel(port, tunnelProvider);
+                const tunnel = await startTunnel(
+                    port,
+                    tunnelProvider,
+                    tunnelSpinner
+                );
                 tunnelUrl = tunnel.url;
                 tunnelStop = tunnel.stop;
                 tunnelSpinner.stop('Tunnel established!');
