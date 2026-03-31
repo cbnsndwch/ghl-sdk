@@ -39,6 +39,7 @@
         "conf": "^15.1.0",
         "consola": "catalog:",
         "defu": "catalog:",
+        "giget": "^3.2.0",
         "picocolors": "catalog:"
     },
     "devDependencies": {

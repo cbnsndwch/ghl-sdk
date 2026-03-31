@@ -9,10 +9,6 @@ import { defu } from 'defu';
 export interface GhlConfig {
     /** GHL Marketplace App ID */
     appId: string;
-    /** GHL OAuth Client ID */
-    clientId: string;
-    /** GHL OAuth Client Secret */
-    clientSecret: string;
     /** RSA public key for webhook signature verification */
     publicKey?: string;
     /** Scopes requested during OAuth */

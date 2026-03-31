@@ -1,17 +1,14 @@
 import { existsSync } from 'node:fs';
-import { mkdir, writeFile } from 'node:fs/promises';
-import { join, dirname } from 'node:path';
+import { readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
-import { defineCommand } from 'citty';
 import * as p from '@clack/prompts';
+import { defineCommand } from 'citty';
+import { downloadTemplate } from 'giget';
 import pc from 'picocolors';
 
-import {
-    generateTemplate,
-    TEMPLATE_CHOICES,
-    type TemplateId
-} from '../templates/index.js';
 import { trackEvent } from '../telemetry/index.js';
+import { getAvailableTemplates } from '../templates/index.js';
 
 export const initCommand = defineCommand({
     meta: {
@@ -40,13 +37,16 @@ export const initCommand = defineCommand({
     async run({ args }) {
         p.intro(pc.bgCyan(pc.black(' ghl init ')));
 
+        // ─── Gather templates from registry ───
+        const fetchSpinner = p.spinner();
+        fetchSpinner.start('Fetching available templates...');
+        const templates = await getAvailableTemplates();
+        fetchSpinner.stop('Loaded templates registry');
+
         // ─── Gather options (interactive or from flags) ───
 
         let appName = args.name as string | undefined;
-        let templateId = args.template as TemplateId | undefined;
-        let includeWebhooks = true;
-        let includeCiCd = true;
-        let packageManager: 'npm' | 'yarn' | 'pnpm' = 'pnpm';
+        let templateId = args.template as string | undefined;
 
         if (!args.yes) {
             const answers = await p.group(
@@ -65,30 +65,12 @@ export const initCommand = defineCommand({
                     template: () =>
                         p.select({
                             message: 'What type of GHL app are you building?',
-                            options: TEMPLATE_CHOICES,
-                            initialValue: (templateId ??
-                                'custom-pages') as TemplateId
-                        }),
-                    pkgManager: () =>
-                        p.select({
-                            message:
-                                'Which package manager do you want to use?',
-                            options: [
-                                { value: 'pnpm', label: 'pnpm' },
-                                { value: 'npm', label: 'npm' },
-                                { value: 'yarn', label: 'yarn' }
-                            ],
-                            initialValue: 'npm'
-                        }),
-                    webhooks: () =>
-                        p.confirm({
-                            message: 'Include webhook consumer?',
-                            initialValue: true
-                        }),
-                    cicd: () =>
-                        p.confirm({
-                            message: 'Include CI/CD pipeline config?',
-                            initialValue: true
+                            options: templates.map(t => ({
+                                value: t.value,
+                                label: t.label,
+                                hint: t.hint
+                            })),
+                            initialValue: templateId ?? templates[0].value
                         })
                 },
                 {
@@ -100,14 +82,15 @@ export const initCommand = defineCommand({
             );
 
             appName = answers.name;
-            templateId = answers.template;
-            packageManager = answers.pkgManager as 'npm' | 'yarn' | 'pnpm';
-            includeWebhooks = answers.webhooks;
-            includeCiCd = answers.cicd;
+            templateId = answers.template as string;
         }
 
         appName = appName ?? 'my-ghl-app';
-        templateId = templateId ?? 'custom-pages';
+        templateId = templateId ?? templates[0].value;
+
+        // Find selected template
+        const selectedTemplate =
+            templates.find(t => t.value === templateId) || templates[0];
 
         // ─── Check target directory ───
 
@@ -123,41 +106,35 @@ export const initCommand = defineCommand({
         // ─── Generate files ───
 
         const s = p.spinner();
-        s.start('Scaffolding project...');
+        s.start(`Downloading ${pc.cyan(selectedTemplate.label)}...`);
 
-        const files = generateTemplate({
-            name: appName,
-            template: templateId,
-            includeWebhooks,
-            includeCiCd,
-            packageManager
-        });
+        try {
+            await downloadTemplate(selectedTemplate.repo, {
+                dir: targetDir,
+                force: true
+            });
 
-        for (const [relPath, content] of files) {
-            const absPath = join(targetDir, relPath);
-            await mkdir(dirname(absPath), { recursive: true });
-            await writeFile(absPath, content, 'utf-8');
+            // Update package.json name if it exists
+            const pkgPath = join(targetDir, 'package.json');
+            if (existsSync(pkgPath)) {
+                const pkgRaw = await readFile(pkgPath, 'utf-8');
+                const pkg = JSON.parse(pkgRaw);
+                pkg.name = appName;
+                await writeFile(pkgPath, JSON.stringify(pkg, null, 2), 'utf-8');
+            }
+
+            s.stop('Template downloaded Successfully!');
+        } catch (err: any) {
+            s.stop('Failed to download template.');
+            p.cancel(`Error: ${err.message}`);
+            process.exit(1);
         }
 
-        s.stop('Project scaffolded!');
-
         trackEvent('init:completed', {
-            template: templateId,
-            includeWebhooks,
-            includeCiCd,
-            packageManager,
-            fileCount: files.size
+            template: selectedTemplate.value
         });
 
         // ─── Print summary ───
-
-        p.note(
-            [
-                `${pc.bold(appName)}/`,
-                ...Array.from(files.keys()).map(f => `  ${pc.dim('├──')} ${f}`)
-            ].join('\n'),
-            'Created files'
-        );
 
         p.outro(
             [
@@ -165,7 +142,8 @@ export const initCommand = defineCommand({
                 '',
                 `  ${pc.bold('Next steps:')}`,
                 `  ${pc.dim('$')} cd ${appName}`,
-                `  ${pc.dim('$')} ${packageManager} install`,
+                `  ${pc.dim('$')} npm install`,
+                `  ${pc.dim('$')} cp .env.example .env`,
                 `  ${pc.dim('$')} ghl dev`
             ].join('\n')
         );
