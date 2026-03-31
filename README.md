@@ -1,4 +1,4 @@
-# `@cbnsndwch/ghl-app-template`
+# `@cbnsndwch/ghl-sdk`
 
 A base template for full-stack HighLevel Marketplace apps
 
@@ -26,15 +26,15 @@ A base template for full-stack HighLevel Marketplace apps
 
 Create a new repository from this template
 
-<a href="https://github.com/new?template_name=ghl-app-template&template_owner=cbnsndwch">
-  <img alt="" src="https://raw.githubusercontent.com/cbnsndwch/ghl-app-template/develop/docs/assets/use-this-template-btn.svg" />
+<a href="https://github.com/new?template_name=ghl-sdk&template_owner=cbnsndwch">
+  <img alt="" src="https://raw.githubusercontent.com/cbnsndwch/ghl-sdk/develop/docs/assets/use-this-template-btn.svg" />
 </a>
 
 Then, clone your new repository on your dev machine and install the dependencies:
 
 ```shell
-git clone https://github.com/{YOUR_GITHUB_USERNAME}/ghl-app-template
-cd ghl-app-template
+git clone https://github.com/{YOUR_GITHUB_USERNAME}/ghl-sdk
+cd ghl-sdk
 pnpm install
 ```
 

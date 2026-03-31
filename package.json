@@ -1,5 +1,5 @@
 {
-    "name": "@cbnsndwch/ghl-app-template",
+    "name": "@cbnsndwch/ghl-sdk-monorepo",
     "description": "A base template for full stack HighLevel Marketplace apps",
     "version": "0.5.1",
     "license": "MIT",

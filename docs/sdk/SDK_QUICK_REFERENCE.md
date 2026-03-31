@@ -658,7 +658,7 @@ process.on('SIGTERM', async () => {
 - **Main Migration Plan**: `SDK_MIGRATION_PLAN.md`
 - **Implementation Guide**: `SDK_IMPLEMENTATION_GUIDE.md`
 - **API Documentation**: [GHL API Docs](https://highlevel.stoplight.io/)
-- **GitHub Repository**: [ghl-app-template](https://github.com/cbnsndwch/ghl-app-template)
+- **GitHub Repository**: [ghl-sdk](https://github.com/cbnsndwch/ghl-sdk)
 
 ---
 

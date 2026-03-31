@@ -19,7 +19,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/cbnsndwch/ghl-app-template.git",
+        "url": "https://github.com/cbnsndwch/ghl-sdk.git",
         "directory": "libs/contracts"
     },
     "scripts": {
