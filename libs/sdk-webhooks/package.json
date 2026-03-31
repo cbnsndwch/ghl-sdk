@@ -1,7 +1,7 @@
 {
     "name": "@cbnsndwch/ghl-sdk-webhooks",
     "description": "Webhook utilities for GHL SDK",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "type": "module",
     "license": "MIT",
     "author": {
