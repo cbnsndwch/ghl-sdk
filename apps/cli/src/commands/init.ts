@@ -46,6 +46,7 @@ export const initCommand = defineCommand({
         let templateId = args.template as TemplateId | undefined;
         let includeWebhooks = true;
         let includeCiCd = true;
+        let packageManager: 'npm' | 'yarn' | 'pnpm' = 'pnpm';
 
         if (!args.yes) {
             const answers = await p.group(
@@ -68,6 +69,17 @@ export const initCommand = defineCommand({
                             initialValue: (templateId ??
                                 'custom-pages') as TemplateId
                         }),
+                    pkgManager: () =>
+                        p.select({
+                            message:
+                                'Which package manager do you want to use?',
+                            options: [
+                                { value: 'pnpm', label: 'pnpm' },
+                                { value: 'npm', label: 'npm' },
+                                { value: 'yarn', label: 'yarn' }
+                            ],
+                            initialValue: 'npm'
+                        }),
                     webhooks: () =>
                         p.confirm({
                             message: 'Include webhook consumer?',
@@ -89,6 +101,7 @@ export const initCommand = defineCommand({
 
             appName = answers.name;
             templateId = answers.template;
+            packageManager = answers.pkgManager as 'npm' | 'yarn' | 'pnpm';
             includeWebhooks = answers.webhooks;
             includeCiCd = answers.cicd;
         }
@@ -116,7 +129,8 @@ export const initCommand = defineCommand({
             name: appName,
             template: templateId,
             includeWebhooks,
-            includeCiCd
+            includeCiCd,
+            packageManager
         });
 
         for (const [relPath, content] of files) {
@@ -131,6 +145,7 @@ export const initCommand = defineCommand({
             template: templateId,
             includeWebhooks,
             includeCiCd,
+            packageManager,
             fileCount: files.size
         });
 
@@ -150,7 +165,7 @@ export const initCommand = defineCommand({
                 '',
                 `  ${pc.bold('Next steps:')}`,
                 `  ${pc.dim('$')} cd ${appName}`,
-                `  ${pc.dim('$')} npm install`,
+                `  ${pc.dim('$')} ${packageManager} install`,
                 `  ${pc.dim('$')} ghl dev`
             ].join('\n')
         );

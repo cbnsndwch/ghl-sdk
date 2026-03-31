@@ -34,6 +34,7 @@ interface TemplateOptions {
     template: TemplateId;
     includeWebhooks: boolean;
     includeCiCd: boolean;
+    packageManager: 'npm' | 'yarn' | 'pnpm';
 }
 
 // ─── File generators ───
@@ -282,7 +283,7 @@ A GHL Marketplace app built with the [GHL App Template](https://github.com/cbnsn
 
 1. Install dependencies:
    \`\`\`bash
-   npm install
+   ${opts.packageManager} install
    \`\`\`
 
 2. Copy \`.env.example\` to \`.env\` and fill in your GHL credentials:
@@ -341,6 +342,13 @@ export function createClient() {
 }
 
 function ciCdWorkflow(opts: TemplateOptions): string {
+    const installCmd =
+        opts.packageManager === 'npm'
+            ? 'npm ci'
+            : `${opts.packageManager} install`;
+    const runCmd =
+        opts.packageManager === 'npm' ? 'npm run' : opts.packageManager;
+
     return `name: CI/CD
 
 on:
@@ -363,11 +371,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: \${{ matrix.node-version }}
-          cache: npm
+          cache: ${opts.packageManager}
 
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+      - run: ${installCmd}
+      - run: ${runCmd} build
+      - run: ${runCmd} test
 
   deploy:
     needs: build
@@ -378,9 +386,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+          cache: ${opts.packageManager}
+      - run: ${installCmd}
+      - run: ${runCmd} build
       # TODO: Add your deployment steps here
       - run: echo "Deploy step placeholder for ${opts.name}"
 `;
