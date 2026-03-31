@@ -42,7 +42,7 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-import-resolver-typescript": "^4.4.4",
         "eslint-plugin-import": "^2.32.0",
-        "eslint-plugin-prettier": "^5.5.4",
+        "eslint-plugin-prettier": "^5.5.5",
         "globals": "^16.4.0",
         "mongoose": "^8.19.2",
         "prettier": "^3.6.2",
