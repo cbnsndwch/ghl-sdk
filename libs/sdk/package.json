@@ -1,6 +1,6 @@
 {
     "name": "@cbnsndwch/ghl-sdk",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "description": "Unified SDK for HighLevel - meta-package with all modules",
     "license": "MIT",
     "type": "module",
