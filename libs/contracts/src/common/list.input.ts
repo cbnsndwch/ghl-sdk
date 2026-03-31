@@ -1,4 +1,4 @@
-import type { FilterQuery } from 'mongoose';
+import type { QueryFilter } from 'mongoose';
 
 /**
  * An input data contract for paginated list endpoints.
@@ -17,7 +17,7 @@ export interface IListInput<T> {
     /**
      * (Optional) MongoDB filter to apply to the query.
      */
-    filters?: FilterQuery<T>;
+    filters?: QueryFilter<T>;
 
     /**
      * (Optional) MongoDB projection to apply to the query.
