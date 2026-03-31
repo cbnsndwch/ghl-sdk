@@ -12,37 +12,39 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
+      contents: write # to create release (changesets/action)
+      issues: write # to post issue comments (changesets/action)
+      pull-requests: write # to create pull request (changesets/action)
+      id-token: write # OpenID Connect token for npm trusted publishing
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+          cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          npm install -g npm@latest
+          pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset:publish
+          publish: pnpm run changeset:publish
+          version: pnpm run changeset:version
           title: 'chore(release): version packages'
           commit: 'chore(release): version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Send Slack Notification on Publish
         if: steps.changesets.outputs.published == 'true'

@@ -1,3 +1,7 @@
+packages:
+  - apps/*
+  - libs/*
+
 ignoredBuiltDependencies:
   - "@nestjs/core"
   - "@scarf/scarf"
@@ -5,10 +9,6 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - esbuild
-
-packages:
-  - apps/*
-  - libs/*
 
 catalog:
   "@changesets/cli": 2.30.0
