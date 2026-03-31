@@ -25,7 +25,7 @@ const DEFAULT_TEMPLATES: TemplateChoice[] = [
         value: 'full',
         label: 'Full Stack React Router',
         hint: 'NestJS + React Router 7 SSR. Complete monorepo app with UI, webhooks, workflows, and API',
-        repo: 'github:cbnsndwch/ghl-app-template',
+        repo: 'github:cbnsndwch/ghl-template-nest-rr7-kitchen-sink',
         packageManager: 'pnpm'
     }
 ];
@@ -36,7 +36,7 @@ const DEFAULT_TEMPLATES: TemplateChoice[] = [
  */
 export async function getAvailableTemplates(): Promise<TemplateChoice[]> {
     try {
-        const res = await fetch('https://raw.githubusercontent.com/cbnsndwch/ghl-app-template/main/templates-registry.json');
+        const res = await fetch('https://raw.githubusercontent.com/cbnsndwch/ghl-sdk/main/templates-registry.json');
         if (res.ok) {
             const registry = await res.json();
             if (Array.isArray(registry) && registry.length > 0) {
